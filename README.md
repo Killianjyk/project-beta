@@ -2,8 +2,8 @@
 
 Team:
 
-* Person 1 - Which microservice?
-* Person 2 - Which microservice?
+* Jeny Kim - Service
+* Killian Kim - Sales
 
 ## Design
 
