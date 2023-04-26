@@ -10,7 +10,7 @@ function NewSale() {
         customer: '',
         price: ''
     })
-
+    const [salesList, setSalesList] = useState([])
     const getDataAuto = async () => {
         const url = 'http://localhost:8100/api/automobiles/';
         const response = await fetch(url);
@@ -41,6 +41,17 @@ function NewSale() {
         }
     }
 
+    const getSalesList = async () => {
+        const url = 'http://localhost:8090/api/sales';
+        const response = await fetch(url);
+
+        if (response.ok) {
+            const data = await response.json();
+            console.log(data)
+            setSalesList(data.sales)
+        }
+    }
+
     const handleSubmit = async (event) => {
         event.preventDefault();
 
@@ -54,7 +65,6 @@ function NewSale() {
         };
 
         const response = await fetch(saleURL, fetchConfig);
-        console.log(response)
 
         if (response.ok) {
             setFormData({
@@ -79,7 +89,23 @@ function NewSale() {
         getDataAuto();
         getDataSalespersons();
         getDataCustomers();
+        getSalesList();
     }, []);
+
+    const vinlist = [];
+    for (let car of salesList) {
+        if (!vinlist.includes(car["automobile"]["vin"])) {
+            vinlist.push(car["automobile"]["vin"])
+        }
+    }
+    const vinlist2 = [];
+    for (let vehicle of automobiles) {
+        if (!vinlist.includes(vehicle.vin)) {
+            vinlist2.push(vehicle.vin)
+        }
+    }
+    console.log(vinlist2);
+
 
     return (
         <div className="row">
@@ -88,12 +114,12 @@ function NewSale() {
                     <h1>Create a new sale</h1>
                     <form onSubmit={handleSubmit} id="create-sale-form">
                         <div className="mb-3">
-                            <select value={formData.auto} onChange={handleFormChange} required name="auto" id="auto" className="form-select">
+                            <select value={formData.automobile} onChange={handleFormChange} required name="automobile" id="auto" className="form-select">
                             <option value="">Choose an automobile vin</option>
-                            {automobiles.map(automobile => {
+                            {vinlist2.map(automobile => {
                                 return (
-                                <option key={automobile.vin} value={automobile.vin}>
-                                    {automobile.vin}
+                                <option key={automobile} value={automobile}>
+                                    {automobile}
                                 </option>
                                 );
                             })}

@@ -7,6 +7,7 @@ import ListSales from './ListSales';
 import ListSalespeople from './ListSalespeople'
 import NewSale from './NewSale';
 import AddSalesperson from './AddSalesperson';
+import SalespersonHistory from './SalespersonHistory';
 
 function App() {
   return (
@@ -26,6 +27,9 @@ function App() {
           <Route path="salespeople">
             <Route path="" element={<ListSalespeople />} />
             <Route path="new" element={<AddSalesperson />} />
+          </Route>
+          <Route path="saleshistory">
+            <Route path="" element={<SalespersonHistory />} />
           </Route>
         </Routes>
       </div>

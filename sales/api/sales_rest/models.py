@@ -6,6 +6,7 @@ from django.urls import reverse
 class AutomobileVO(models.Model):
     vin = models.CharField(max_length=17, unique=True)
     import_href = models.CharField(max_length=200, unique=True)
+    sold = models.BooleanField(default=False)
 
     def get_api_url(self):
         return reverse("api_automobile", kwargs={"vin": self.vin})

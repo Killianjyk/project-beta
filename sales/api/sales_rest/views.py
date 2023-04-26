@@ -12,7 +12,8 @@ class AutomobileVOEncoder(ModelEncoder):
     model = AutomobileVO
     properties = ["vin",
                   "import_href",
-                  "id"
+                  "id",
+                  "sold"
                   ]
 
 
@@ -187,6 +188,11 @@ def api_list_sales(request):
             print(content["automobile"])
             print(id)
             automobile = AutomobileVO.objects.get(vin=vin)
+            if Sale.objects.filter(automobile=automobile).exists():
+                return JsonResponse(
+                    {"message": "This vehicle has already been sold"},
+                    status=400,
+                )
             content["automobile"] = automobile
         except AutomobileVO.DoesNotExist:
             return JsonResponse(
@@ -195,6 +201,9 @@ def api_list_sales(request):
             )
 
         sale = Sale.objects.create(**content)
+        sale.automobile.sold = True
+        sale.automobile.save()
+
         return JsonResponse(
             sale,
             encoder=SaleDetailEncoder,
