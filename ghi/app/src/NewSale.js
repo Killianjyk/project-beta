@@ -10,6 +10,7 @@ function NewSale() {
         customer: '',
         price: ''
     })
+    console.log(formData);
     const [salesList, setSalesList] = useState([])
     const getDataAuto = async () => {
         const url = 'http://localhost:8100/api/automobiles/';
@@ -47,7 +48,6 @@ function NewSale() {
 
         if (response.ok) {
             const data = await response.json();
-            console.log(data)
             setSalesList(data.sales)
         }
     }
@@ -104,7 +104,7 @@ function NewSale() {
             vinlist2.push(vehicle.vin)
         }
     }
-    console.log(vinlist2);
+
 
 
     return (
@@ -114,7 +114,7 @@ function NewSale() {
                     <h1>Create a new sale</h1>
                     <form onSubmit={handleSubmit} id="create-sale-form">
                         <div className="mb-3">
-                            <select value={formData.automobile} onChange={handleFormChange} required name="automobile" id="auto" className="form-select">
+                            <select value={formData.automobile} onChange={handleFormChange} required name="automobile" id="automobile" className="form-select">
                             <option value="">Choose an automobile vin</option>
                             {vinlist2.map(automobile => {
                                 return (
