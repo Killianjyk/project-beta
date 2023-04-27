@@ -19,15 +19,9 @@ def appointment_list(request):
         )
     else:
         content = json.loads(request.body)
-        appointment = Appointment(
-            date_time=content["date_time"],
-            reason=content["reason"],
-            status=content["status"],
-            customer=content["customer"],
-            technician=Technician.objects.get(id=content["technician"]),
-            vin=content["vin"]
-        )
-        appointment.save()
+        technician = Technician.objects.get(id=content["technician"])
+        content["technician"] = technician
+        appointment = Appointment.objects.create(**content)
         return JsonResponse(
             {"appointment": appointment},
             encoder=AppointmentEncoder,

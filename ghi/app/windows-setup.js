@@ -4,7 +4,7 @@ const hostOS = process.env.HOST_OS || '';
 
 console.log('Setup reports node environment as', process.env.NODE_ENV, hostOS, process.arch);
 
-if (process.env.NODE_ENV === 'development' && hostOS.toLowerCase().includes('win')) {
+if (process.env.NODE_ENV === 'development') {
   const configPath = path.resolve('./node_modules/react-scripts/config/webpack.config.js');
   const config = readFileSync(configPath, 'utf8');
 

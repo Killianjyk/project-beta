@@ -1,26 +1,28 @@
 import React, { useState, useEffect } from 'react';
-import DateEncoder from './DateEncoder';
 
 function AppointmentList() {
     const [appointments, setAppointments] = useState([]);
     const [isLoading, setIsLoading] = useState(true);
 
-  const fetchAppointments = async () => {
-    const response = await fetch('http://localhost:8080/api/appointments/', {
-      headers: {
-        Accept: 'application/json+datetime',
-      },
-    });
-    if (response.ok) {
-      const data = await response.json();
-      setAppointments(data.appointments);
-    }
-    setIsLoading(false);
-  };
+    const fetchAppointments = async () => {
+      const response = await fetch('http://localhost:8080/api/appointments/', {
+        headers: {
+          Accept: 'application/json+datetime',
+        },
+      });
+      if (response.ok) {
+        const data = await response.json();
+        setAppointments(data.appointments);
+      }
+      setIsLoading(false);
+    };
 
-    useEffect(() => {
-      fetchAppointments();
-    }, []);
+      useEffect(() => {
+        fetchAppointments();
+      }, []);
+
+
+
 
     const handleCancelAppointment = async (appointmentId) => {
       const url = `http://localhost:8080/api/appointments/${appointmentId}`;

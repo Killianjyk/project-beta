@@ -14,8 +14,19 @@ function ServiceHistory() {
             }
         };
 
+        getData();
         fetchAppointments();
     }, []);
+
+    const [technicians, setTechnicianList] = useState([])
+    const getData = async () => {
+        const response = await fetch('http://localhost:8080/api/technicians/');
+        if (response.ok) {
+            const data = await response.json();
+            setTechnicianList(data.technicians);
+        }
+    }
+
 
     const handleSearch = (event) => {
         event.preventDefault();
@@ -65,7 +76,7 @@ function ServiceHistory() {
                             <td>{appointment.customer}</td>
                             <td>{new Date(appointment.date_time).toLocaleDateString()}</td>
                             <td>{new Date(appointment.date_time).toLocaleTimeString()}</td>
-                             <td>{appointment.technician}</td>
+                            <td>{appointment.technicians}</td>
                             <td>{appointment.reason}</td>
                             <td>{appointment.finished ? 'Finished' : 'Created'}</td>
                         </tr>
