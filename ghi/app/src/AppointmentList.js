@@ -34,6 +34,19 @@ function AppointmentList() {
         setAppointments((prevAppointments) => {
           return prevAppointments.filter((appointment) => appointment.id !== appointmentId);
         });
+        // Update the appointment status to "CANCELLED"
+        const statusUrl = `http://localhost:8080/api/appointments/${appointmentId}`;
+        const statusFetchConfig = {
+          method: 'PUT',
+          body: JSON.stringify({ status: 'CANCELLED' }),
+          headers: {
+            'Content-Type': 'application/json',
+          },
+        };
+        const statusResponse = await fetch(statusUrl, statusFetchConfig);
+        if (!statusResponse.ok) {
+          console.log('Failed to update appointment status');
+        }
       } else {
         console.log('Failed to cancel service appointment');
       }
@@ -43,7 +56,7 @@ function AppointmentList() {
       const url = `http://localhost:8080/api/appointments/${appointmentId}`;
       const fetchConfig = {
         method: 'PUT',
-        body: JSON.stringify({ finished: true }),
+        body: JSON.stringify({ finished: true, status: 'COMPLETED' }),
         headers: {
           'Content-Type': 'application/json',
         },
@@ -58,10 +71,7 @@ function AppointmentList() {
       }
     };
 
-    if (isLoading) {
-      return <div>Loading...</div>;
-    }
-    console.log(appointments)
+
     return (
       <div className="row">
         <div className="col offset">

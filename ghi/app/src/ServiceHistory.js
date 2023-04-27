@@ -34,6 +34,7 @@ function ServiceHistory() {
             appointment.vin.includes(searchTerm.toUpperCase())
         );
         setFilteredAppointments(filtered);
+        setSearchTerm("");
     };
 
     return (
@@ -69,7 +70,7 @@ function ServiceHistory() {
                     </tr>
                 </thead>
                 <tbody>
-                    {appointments.map((appointment) => (
+                    {filteredAppointments.map((appointment) => (
                         <tr key={appointment.id}>
                             <td>{appointment.vin}</td>
                             <td>{appointment.is_vip ? 'Yes' : 'No'}</td>
@@ -78,7 +79,7 @@ function ServiceHistory() {
                             <td>{new Date(appointment.date_time).toLocaleTimeString()}</td>
                             <td>{appointment.technician}</td>
                             <td>{appointment.reason}</td>
-                            <td>{appointment.finished ? 'Finished' : 'Created'}</td>
+                            <td>{appointment.status}</td>
                         </tr>
                     ))}
                 </tbody>

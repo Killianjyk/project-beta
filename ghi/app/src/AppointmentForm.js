@@ -22,7 +22,6 @@ function AppointmentForm() {
           date_time: `${date} ${time}`,
           technician: technician,
           reason: reason,
-          technicians: technicians,
           status: status
       }),
       headers: {
