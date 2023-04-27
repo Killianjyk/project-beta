@@ -17,13 +17,13 @@ function AppointmentForm() {
     const fetchConfig = {
       method: 'POST',
       body: JSON.stringify({
-          vin: '',
-          customer: '',
-          date_time: '',
-          technician: '',
-          reason: '',
-          technicians: '',
-          status: ''
+          vin: vin,
+          customer: customer,
+          date_time: `${date} ${time}`,
+          technician: technician,
+          reason: reason,
+          technicians: technicians,
+          status: status
       }),
       headers: {
           'Content-Type': 'application/json'
@@ -39,7 +39,7 @@ function AppointmentForm() {
       setTime('');
       setTechnician('');
       setReason('');
-      setTechnicians([]);
+      setTechnicians('');
       setStatus('');
     } else {
       console.log('Failed to create service appointment');
@@ -70,7 +70,6 @@ function AppointmentForm() {
       const response = await fetch(url);
       if (response.ok) {
         const data = await response.json();
-        console.log(data)
         setTechnicians(data.technicians);
       }
   };
@@ -142,9 +141,9 @@ function AppointmentForm() {
                     onChange={handleFormChange}
                     required
                 >
-                    <option value="">Choose a technician...</option>
+                    <option value="" disabled>Choose a technician...</option>
                     {technicians.map((tech) => (
-                    <option key={tech.id}>
+                    <option key={tech.id} value={tech.id}>
                         {tech.first_name} {tech.last_name}
                     </option>
                     ))}

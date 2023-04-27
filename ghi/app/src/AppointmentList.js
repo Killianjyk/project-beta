@@ -56,7 +56,7 @@ function AppointmentList() {
     if (isLoading) {
       return <div>Loading...</div>;
     }
-
+    console.log(appointments)
     return (
       <div className="row">
         <div className="col offset">

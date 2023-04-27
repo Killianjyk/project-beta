@@ -17,9 +17,6 @@ class Technician(models.Model):
     last_name = models.CharField(max_length=100)
     employee_id = models.CharField(max_length=100)
 
-    def get_api_url(self):
-        return reverse("api_technician", kwargs={"id: self.id"})
-
 
 # model Appointment
 class Appointment(models.Model):
@@ -37,11 +34,7 @@ class Appointment(models.Model):
         related_name="technicians",
         on_delete=models.CASCADE
     )
-    vin = models.ForeignKey(
-        AutomobileVO,
-        related_name="vins",
-        on_delete=models.CASCADE
-    )
+    vin = models.CharField(max_length=17)
 
     def get_api_url(self):
         return reverse("api_appointment_detail", kwargs={"pk": self.pk})
