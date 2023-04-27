@@ -39,7 +39,7 @@ function AppointmentForm() {
       setTime('');
       setTechnician('');
       setReason('');
-      setTechnicians('');
+      setTechnicians([]);
       setStatus('');
     } else {
       console.log('Failed to create service appointment');

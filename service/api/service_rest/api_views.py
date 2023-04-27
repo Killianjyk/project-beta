@@ -25,7 +25,7 @@ def appointment_list(request):
             status=content["status"],
             customer=content["customer"],
             technician=Technician.objects.get(id=content["technician"]),
-            vin=AutomobileVO.objects.get(vin=content["vin"])
+            vin=content["vin"]
         )
         appointment.save()
         return JsonResponse(

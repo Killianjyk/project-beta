@@ -1,19 +1,22 @@
 import React, { useState, useEffect } from 'react';
-
+import DateEncoder from './DateEncoder';
 
 function AppointmentList() {
     const [appointments, setAppointments] = useState([]);
     const [isLoading, setIsLoading] = useState(true);
 
-    const fetchAppointments = async () => {
-      const response = await fetch('http://localhost:8080/api/appointments/');
-      if (response.ok) {
-        const data = await response.json();
-        console.log(data)
-        setAppointments(data.appointments);
-      }
-      setIsLoading(false);
-    };
+  const fetchAppointments = async () => {
+    const response = await fetch('http://localhost:8080/api/appointments/', {
+      headers: {
+        Accept: 'application/json+datetime',
+      },
+    });
+    if (response.ok) {
+      const data = await response.json();
+      setAppointments(data.appointments);
+    }
+    setIsLoading(false);
+  };
 
     useEffect(() => {
       fetchAppointments();
@@ -80,7 +83,7 @@ function AppointmentList() {
                   <td>{appointment.vin}</td>
                   <td>{appointment.is_vip ? 'Yes' : 'No'}</td>
                   <td>{appointment.customer}</td>
-                  <td>{new Date(appointment.date_time).toLocaleDateString()}</td>
+                  <td>{new Date(Date.parse(appointment.date_time)).toLocaleDateString()}</td>
                   <td>{new Date(appointment.date_time).toLocaleTimeString()}</td>
                   <td>{appointment.technician}</td>
                   <td>{appointment.reason}</td>
