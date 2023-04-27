@@ -9,39 +9,38 @@ function CreateVehicle() {
     const handleSubmit = async (event) => {
         event.preventDefault();
 
-        const vehicleURL = 'http://localhost:8100/api/models/'
+        const vehicleURL = 'http://localhost:8100/api/models/';
         const fetchConfig = {
-            method: 'POST',
-            body: JSON.stringify({
-                name: name,
-                picture_url: pictureUrl,
-                manufacturer, manufacturer
-            }),
-            headers: {
-                'Content-Type': 'application/json'
-            },
+          method: 'POST',
+          body: JSON.stringify({
+            name: name,
+            picture_url: pictureUrl,
+            manufacturer_id: manufacturer,
+          }),
+          headers: {
+            'Content-Type': 'application/json',
+          },
         };
 
         const response = await fetch(vehicleURL, fetchConfig);
 
         if (response.ok) {
-            setName('');
-            setPictureUrl('');
-            setManufacturer('');
-            setManufacturers();
+          setName('');
+          setPictureUrl('');
+          setManufacturer('');
         }
-    };
+      };
 
     const handleFormChange = (event) => {
-        const { name, value } =  event.target;
-        if (name === "name"){
-            setName(value);
-        } else if (name === "picture_url"){
-            setPictureUrl(value);
-        } else if (name === "manufacturer"){
-            setManufacturer(value);
+        const { name, value } = event.target;
+        if (name === "name") {
+          setName(value);
+        } else if (name === "picture_url") {
+          setPictureUrl(value);
+        } else if (name === "manufacturer") {
+          setManufacturer(parseInt(value));
         }
-    }
+      };
 
     const getData = async () => {
         const url = 'http://localhost:8100/api/manufacturers/'

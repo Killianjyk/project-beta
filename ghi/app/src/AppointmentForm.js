@@ -56,7 +56,7 @@ function AppointmentForm() {
       } else if (name === "time") {
         setTime(value);
       } else if (name === "technician") {
-        setTechnician(value);
+        setTechnician(parseInt(value));
       } else if (name === "reason") {
         setReason(value);
       } else if (name === "status") {
