@@ -31,6 +31,7 @@ class AppointmentEncoder(ModelEncoder):
         "customer",
         "vin",
         "id",
+        "technician"
     ]
     def default(self, obj):
         if isinstance(obj, Appointment):

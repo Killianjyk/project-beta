@@ -76,7 +76,7 @@ function ServiceHistory() {
                             <td>{appointment.customer}</td>
                             <td>{new Date(appointment.date_time).toLocaleDateString()}</td>
                             <td>{new Date(appointment.date_time).toLocaleTimeString()}</td>
-                            <td>{appointment.technicians}</td>
+                            <td>{appointment.technician}</td>
                             <td>{appointment.reason}</td>
                             <td>{appointment.finished ? 'Finished' : 'Created'}</td>
                         </tr>
