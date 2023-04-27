@@ -75,7 +75,7 @@ function ServiceHistory() {
                             <td>{appointment.vin}</td>
                             <td>{appointment.is_vip ? 'Yes' : 'No'}</td>
                             <td>{appointment.customer}</td>
-                            <td>{new Date(appointment.date_time).toLocaleDateString()}</td>
+                            <td>{new Date(Date.parse(appointment.date_time)).toLocaleDateString()}</td>
                             <td>{new Date(appointment.date_time).toLocaleTimeString()}</td>
                             <td>{appointment.technician}</td>
                             <td>{appointment.reason}</td>

@@ -24,52 +24,39 @@ function AppointmentList() {
 
 
 
-    const handleCancelAppointment = async (appointmentId) => {
-      const url = `http://localhost:8080/api/appointments/${appointmentId}`;
-      const fetchConfig = {
-        method: 'DELETE',
-      };
-      const response = await fetch(url, fetchConfig);
-      if (response.ok) {
-        setAppointments((prevAppointments) => {
-          return prevAppointments.filter((appointment) => appointment.id !== appointmentId);
-        });
-        // Update the appointment status to "CANCELLED"
-        const statusUrl = `http://localhost:8080/api/appointments/${appointmentId}`;
-        const statusFetchConfig = {
+      const handleCancelAppointment = async (appointmentId) => {
+        const url = `http://localhost:8080/api/appointments/${appointmentId}`;
+        const fetchConfig = {
           method: 'PUT',
           body: JSON.stringify({ status: 'CANCELLED' }),
           headers: {
             'Content-Type': 'application/json',
           },
         };
-        const statusResponse = await fetch(statusUrl, statusFetchConfig);
-        if (!statusResponse.ok) {
-          console.log('Failed to update appointment status');
+        const response = await fetch(url, fetchConfig);
+        if (response.ok) {
+          fetchAppointments();
+        } else {
+          console.log('Failed to cancel service appointment');
         }
-      } else {
-        console.log('Failed to cancel service appointment');
-      }
-    };
-
-    const handleFinishAppointment = async (appointmentId) => {
-      const url = `http://localhost:8080/api/appointments/${appointmentId}`;
-      const fetchConfig = {
-        method: 'PUT',
-        body: JSON.stringify({ finished: true, status: 'COMPLETED' }),
-        headers: {
-          'Content-Type': 'application/json',
-        },
       };
-      const response = await fetch(url, fetchConfig);
-      if (response.ok) {
-        setAppointments((prevAppointments) => {
-          return prevAppointments.filter((appointment) => appointment.id !== appointmentId);
-        });
-      } else {
-        console.log('Failed to finish service appointment');
-      }
-    };
+
+      const handleFinishAppointment = async (appointmentId) => {
+        const url = `http://localhost:8080/api/appointments/${appointmentId}`;
+        const fetchConfig = {
+          method: 'PUT',
+          body: JSON.stringify({ status: 'COMPLETED', finished: true }),
+          headers: {
+            'Content-Type': 'application/json',
+          },
+        };
+        const response = await fetch(url, fetchConfig);
+        if (response.ok) {
+          fetchAppointments();
+        } else {
+          console.log('Failed to finish service appointment');
+        }
+      };
 
 
     return (

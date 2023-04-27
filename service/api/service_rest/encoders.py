@@ -1,4 +1,4 @@
-from common.json import ModelEncoder, JSONEncoder
+from common.json import ModelEncoder
 from .models import Technician, AutomobileVO, Appointment
 
 # JSON encoder for AutomobileVO model
