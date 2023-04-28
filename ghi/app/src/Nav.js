@@ -10,14 +10,26 @@ function Nav() {
         </button>
         <div className="collapse navbar-collapse" id="navbarSupportedContent">
           <ul className="navbar-nav me-auto mb-2 mb-lg-0">
-          <NavLink className="navbar-brand" to="/technicians/">Technicians List</NavLink>
-          <NavLink className="navbar-brand" to="/technicians/new">Create Technicians</NavLink>
-          <NavLink className="navbar-brand" to="/appointments/">Service Appointment List</NavLink>
-          <NavLink className="navbar-brand" to="/appointments/new">Create Service Appointment</NavLink>
-          <NavLink className="navbar-brand" to="/service-history">Service History</NavLink>
-          <NavLink className="navbar-brand" to="/vehicles/new">Create Vehicle</NavLink>
             <li className="nav-item">
               <NavLink className="nav-link active" aria-current="page" to="/">Home</NavLink>
+            </li>
+            <li className="nav-item">
+              <NavLink className="nav-link" to="/technicians/">Technicians List</NavLink>
+            </li>
+            <li className="nav-item">
+              <NavLink className="nav-link" to="/technicians/new">Create Technicians</NavLink>
+            </li>
+            <li className="nav-item">
+              <NavLink className="nav-link" to="/appointments/">Service Appointment List</NavLink>
+            </li>
+            <li className="nav-item">
+              <NavLink className="nav-link" to="/appointments/new">Create Service Appointment</NavLink>
+            </li>
+            <li className="nav-item">
+              <NavLink className="nav-link" to="/service-history">Service History</NavLink>
+            </li>
+            <li className="nav-item">
+              <NavLink className="nav-link" to="/vehicles/new">Create Vehicle</NavLink>
             </li>
             <li className="nav-item">
               <NavLink className="nav-link" to="/customers">Customer List</NavLink>

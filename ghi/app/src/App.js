@@ -51,6 +51,8 @@ function App() {
           </Route>
           <Route path="manufacturers">
             <Route path="" element={<ListManufacturers />} />
+            <Route path="new" element={<CreateManufacturer />} />
+          </Route>
           <Route path="technicians">
             <Route index element={<TechnicianList />} />
             <Route path="new" element={<TechnicianForm />} />
@@ -61,10 +63,6 @@ function App() {
           </Route>
           <Route path="service-history" element={<ServiceHistory />} />
           <Route path="vehicles/new" element={<CreateVehicle />} />
-          </Route>
-          <Route path="manufacturers">
-            <Route path="new" element={<CreateManufacturer />} />
-          </Route>
         </Routes>
       </div>
     </BrowserRouter>
