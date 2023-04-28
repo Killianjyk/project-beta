@@ -1,3 +1,4 @@
+
 import React, {useState, useEffect } from 'react';
 
 function AppointmentForm() {
@@ -19,7 +20,7 @@ function AppointmentForm() {
       body: JSON.stringify({
           vin: vin,
           customer: customer,
-          date_time: `${date} ${time}`,
+          date_time: date,
           technician: technician,
           reason: reason,
           status: status

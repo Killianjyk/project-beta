@@ -39,5 +39,3 @@ class Appointment(models.Model):
     def get_api_url(self):
         return reverse("api_appointment_detail", kwargs={"pk": self.pk})
 
-    def __str__(self):
-        return self.reason

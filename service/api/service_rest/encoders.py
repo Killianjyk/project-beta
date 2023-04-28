@@ -31,7 +31,9 @@ class AppointmentEncoder(ModelEncoder):
         "customer",
         "vin",
         "id",
-        "technician"
+        "technician",
+        "date_time",
+
     ]
     def default(self, obj):
         if isinstance(obj, Appointment):
@@ -41,3 +43,6 @@ class AppointmentEncoder(ModelEncoder):
             result["technician"] = f"{obj.technician.first_name} {obj.technician.last_name}"
             return result
         return super().default(obj)
+
+    def get_extra_data(self, o):
+        return {'date_time':o.date_time.isoformat()}
