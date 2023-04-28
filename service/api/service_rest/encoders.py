@@ -32,7 +32,8 @@ class AppointmentEncoder(ModelEncoder):
         "vin",
         "id",
         "technician",
-        "date_time",
+        "date_time"
+
 
     ]
     def default(self, obj):
