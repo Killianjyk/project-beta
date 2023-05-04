@@ -5,7 +5,7 @@ function CreateAutomobiles() {
         color: '',
         year: '',
         vin: '',
-        model: ''
+        model_id: ''
     });
 
     const handleSubmit = async (event) => {
@@ -21,13 +21,13 @@ function CreateAutomobiles() {
         };
 
         const response = await fetch(autoURL, fetchConfig);
-
+        console.log(formData);
         if (response.ok) {
             setFormData({
                 color: '',
                 year: '',
                 vin: '',
-                model: '',
+                model_id: '',
             });
         }
     }
@@ -39,7 +39,6 @@ function CreateAutomobiles() {
         if (response.ok) {
             const data = await response.json();
             setModelList(data.models)
-            console.log(data.models);
         }
 
     }
@@ -51,6 +50,7 @@ function CreateAutomobiles() {
             ...formData,
             [inputName]: value
         });
+        console.log(formData);
     }
 
     useEffect(()=> {
@@ -76,7 +76,7 @@ function CreateAutomobiles() {
                             <label htmlFor="name">VIN</label>
                         </div>
                         <div className="mb-3">
-                            <select value={formData.model} onChange={handleFormChange} required name="model" id="model" className="form-select">
+                            <select value={formData.model} onChange={handleFormChange} required name="model_id" id="model_id" className="form-select">
                             <option value="">Choose a model</option>
                             {models.map(model => {
                                 return (

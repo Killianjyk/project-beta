@@ -10,7 +10,6 @@ function NewSale() {
         customer: '',
         price: ''
     })
-    console.log(formData);
     const [salesList, setSalesList] = useState([])
     const getDataAuto = async () => {
         const url = 'http://localhost:8100/api/automobiles/';

@@ -15,7 +15,7 @@ function ListSalespeople() {
         getData()
     }, [])
 
-    console.log(salespeople)
+
 
     return (
         <>

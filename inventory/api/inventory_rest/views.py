@@ -23,6 +23,7 @@ def api_automobiles(request):
             content = json.loads(request.body)
             model_id = content["model_id"]
             model = VehicleModel.objects.get(pk=model_id)
+            print(model)
             content["model"] = model
             auto = Automobile.objects.create(**content)
             return JsonResponse(

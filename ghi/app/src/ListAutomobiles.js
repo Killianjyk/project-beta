@@ -46,7 +46,6 @@ function ListAutomobiles() {
     for (let soldprop of salesList) {
         soldlist.push(soldprop["automobile"]["sold"])
     }
-    console.log(soldlist);
 
     return (
         <>
